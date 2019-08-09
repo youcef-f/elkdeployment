@@ -22,7 +22,7 @@ pipeline {
                 //}
 
                 withCredentials([string(credentialsId: 'elklocalvm2', variable: 'varelklocalvm')]) {
-                    bat 'ssh -o StrictHostKeyChecking=no root@192.168.10.102 uname -P %varelklocalvm%  uname -a'
+                    bat 'ssh -o StrictHostKeyChecking=no root@192.168.10.102  -P %varelklocalvm%  uname -a'
                 }
             }
 
