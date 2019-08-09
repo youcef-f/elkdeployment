@@ -15,7 +15,9 @@ pipeline {
             steps{
                 sshagent(credentials: ['elklocalvm']) {
                     echo 'ssh through 192.168.10.102'
-                    sh 'ssh -o StrictHostKeyChecking=no -l root 192.168.10.102 uname -a'
+                    bat '''
+                           ssh -o StrictHostKeyChecking=no -l root 192.168.10.102 uname -a
+                    '''
                 }
             }
 
