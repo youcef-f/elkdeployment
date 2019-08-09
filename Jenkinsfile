@@ -5,15 +5,20 @@ pipeline {
     stages {
 
         stage('Checkout') {
-            checkout scm
-        }
-        stage('copy_elk_file') {
-            sshagent(credentials: ['elklocalvm']) {
-                echo 'ssh through 192.168.10.102'
-                sh 'ssh -o StrictHostKeyChecking=no -l root 192.168.10.102 uname -a'
+            steps {
+                checkout scm
             }
         }
-        steps('deleteWorkspace') {
+        stage('copy_elk_file') {
+            steps{
+                sshagent(credentials: ['elklocalvm']) {
+                    echo 'ssh through 192.168.10.102'
+                    sh 'ssh -o StrictHostKeyChecking=no -l root 192.168.10.102 uname -a'
+                }
+            }
+
+        }
+        stage('deleteWorkspace') {
             echo 'Deploying....'
             deleteDir() /* clean up our workspace */
         }
