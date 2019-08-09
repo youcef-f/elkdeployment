@@ -23,7 +23,7 @@ pipeline {
 
                 withCredentials([file(credentialsId: 'elklocalvm2', variable: 'varelklocalvm')]) {
                     //bat 'ssh -o StrictHostKeyChecking=no root@192.168.10.102  -i %varelklocalvm%  uname -a'
-                    bat 'scp -o StrictHostKeyChecking=no root@192.168.10.102  -i %varelklocalvm%  .\\fms\\elk_server\\logstash  /tmp'
+                    bat 'scp -pr -i  %varelklocalvm%  -o StrictHostKeyChecking=no  .\\fms\\elk_server\\logstash    root@192.168.10.102:/tmp/'
                 }
             }
 
