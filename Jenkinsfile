@@ -21,7 +21,7 @@ pipeline {
                   //  sh 'ssh -o StrictHostKeyChecking=no -l root 192.168.10.102 uname -a'
                 //}
 
-                withCredentials([usernameColonPassword(credentialsId: 'elklocalvm2', variable: 'varelklocalvm')]) {
+                withCredentials([string(credentialsId: 'elklocalvm2', variable: 'varelklocalvm')]) {
                     bat 'ssh -o StrictHostKeyChecking=no root@192.168.10.102 uname -P %varelklocalvm%  uname -a'
                 }
             }
