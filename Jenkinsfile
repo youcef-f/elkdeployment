@@ -2,15 +2,20 @@ pipeline {
 
     agent any
 
+
         currentBuild.result = "SUCCESS"
         stage('Checkout'){
-
             checkout scm
         }
         stage('copy_elk_file') {
-            sshagent (credentials: ['deploy-dev']) {
-                sh 'ssh -o StrictHostKeyChecking=no -l cloudbees 192.168.10.102 uname -a'
+            sshagent (credentials: ['elklocalvm']) {
+                echo 'ssh through 192.168.10.102'
+                sh 'ssh -o StrictHostKeyChecking=no -l root 192.168.10.102 uname -a'
             }
+        }
+        steps  ('deleteWorkspace') {
+           echo 'Deploying....'
+          deleteDir() /* clean up our workspace */
         }
 
 
