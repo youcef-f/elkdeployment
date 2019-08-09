@@ -13,12 +13,12 @@ pipeline {
         }
         stage('copy_elk_file') {
             steps{
-                sshagent(credentials: ['elklocalvm']) {
+
                     echo 'ssh through 192.168.10.102'
                     bat '''
                            ssh -o StrictHostKeyChecking=no -l root 192.168.10.102 uname -a
                     '''
-                }
+
             }
 
         }
