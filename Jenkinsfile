@@ -2,6 +2,9 @@ pipeline {
 
     agent any
 
+    // Clean workspace before doing anything
+    deleteDir()
+
     stages {
 
         stage('Checkout') {
@@ -18,10 +21,17 @@ pipeline {
             }
 
         }
+
+        /*
         stage('deleteWorkspace') {
-            echo 'Deploying....'
-            deleteDir() /* clean up our workspace */
+            steps {
+                echo 'Deploying....'
+                deleteDir() // clean up our workspace
+            }
+
         }
+        */
+
 
 
     }
