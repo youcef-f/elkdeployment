@@ -2,9 +2,7 @@ pipeline {
 
     agent any
 
-
-        currentBuild.result = "SUCCESS"
-        stage('Checkout'){
+     stage('Checkout'){
             checkout scm
         }
         stage('copy_elk_file') {
